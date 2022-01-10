@@ -13,7 +13,29 @@
     --darkblue: #1D3557;
 }
 
-.custom-container {
+.custom-header {
     background-color: var(--strongblue);
     color: honeydew;
+}
+
+.custom-button {
+    background-color: var(--strongblue);
+    color: honeydew;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.custom-button:hover {
+    background-color: #2EE59D;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: honeydew;
+    transform: translateY(-7px);;
+}
+
+.city-info {
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
 }
