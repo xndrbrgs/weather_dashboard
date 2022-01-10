@@ -39,3 +39,8 @@
     border-radius: 10px;
     border-width: 2px;
 }
+
+.city-name {
+    font-weight: bold;
+    font-size: 30px;
+}
