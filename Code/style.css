@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Arimo', sans-serif;
+}
+
+:root {
+    --red: #E63946;
+    --honeydew: #F1FAEE;
+    --babyblue: #A8DADC;
+    --strongblue: #457B9D;
+    --darkblue: #1D3557;
+}
+
+.custom-container {
+    background-color: var(--strongblue);
+    color: honeydew;
+}
