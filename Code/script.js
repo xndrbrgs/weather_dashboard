@@ -29,35 +29,6 @@ function displayTime() {
 
 // Functions
 
-var formSubmitHandler = function (event) {
-  event.preventDefault();
-  var city = cityInput.value.trim();
-  if (city) {
-    getWeather(city);
-    getFiveDay(city);
-    cities.unshift({city});
-    cityInput.value = "";
-  } else {
-    alert("Please Enter A City!");
-  }
-  savedSearch();
-  pastSearched(city);
-};
-
-function savedSearch() {
-  localStorage.setItem("cities", JSON.stringify(cities));
-};
-
-function getTheWeather(city) {
-  fetch("api.openweathermap.org/data/2.5/weather?q=" + ${city} + "&appid=" + weatherApiKey)
-    .then(function(response) {
-      response.JSON().then(function(data) {
-        weatherDisplay(data, city);
-      });
-    });  
-};
-
-function weatherDisplay(weather, searchButton)
 
 // Event Listeners
 
