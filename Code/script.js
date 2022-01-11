@@ -18,6 +18,7 @@ var currentUV = $("#uv-index");
 var historyEle = $("#history");
 var fiveDays = $("#fiveday-contained");
 var todaysWeather = $("#todaysWeather");
+var cardRow = $('.card-row');
 
 // Timer and Date
 
@@ -63,13 +64,18 @@ function renderSearchHistory(cityName) {
   }
 }
 
-function renderWeatherData(cityName, cityTemp, cityHumidity, cityWindSpeed, cityWeatherIcon, uvVal) {
+function clearSearch() {
+  return localStorage.clear("searchHistory");
+}
+
+clearButton.on("click", clearSearch);
+
+function renderWeatherData(cityName, cityTemp, cityHumidity, cityWindSpeed, uvVal) {
   cityNameEl.text(cityName)
   currentTemp.text(`Temperature: ${cityTemp} °F`);
   currentHumid.text(`Humidity: ${cityHumidity}%`);
   currentWind.text(`Wind Speed: ${cityWindSpeed} MPH`);
   currentUV.text(`UV Index: ${uvVal}`);
-  weatherIconEl.attr("src", cityWeatherIcon);
 }
 
 function getWeather(desiredCity) {
@@ -87,7 +93,7 @@ function getWeather(desiredCity) {
           cityUVIndex: weatherData.coord,
           cityWeatherIconName: weatherData.weather[0].icon
       }
-  let queryUrl = `https://api.openweathermap.org/data/2.5/uvi?lat=${cityObj.cityUVIndex.lat}&lon=${cityObj.cityUVIndex.lon}&APPID=${apiKey}&units=imperial`
+  let queryUrl = `https://api.openweathermap.org/data/2.5/uvi?lat=${cityObj.cityUVIndex.lat}&lon=${cityObj.cityUVIndex.lon}&APPID=${weatherApiKey}&units=imperial`
   $.ajax({
       url: queryUrl,
       method: 'GET'
@@ -128,6 +134,31 @@ function getWeather(desiredCity) {
       
   });
 
-  
+  getFiveDayForecast();
+
+    function getFiveDayForecast() {
+        cardRow.empty();
+        let queryUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${desiredCity}&APPID=${weatherApiKey}&units=imperial`;
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        })
+        .then(function(fiveDayReponse) {
+            for (let i = 0; i != fiveDayReponse.list.length; i+=8 ) {
+                let cityObj = {
+                    date: fiveDayReponse.list[i].dt_txt,
+                    icon: fiveDayReponse.list[i].weather[0].icon,
+                    temp: fiveDayReponse.list[i].main.temp,
+                    humidity: fiveDayReponse.list[i].main.humidity
+                }
+                let dateStr = cityObj.date;
+                let trimmedDate = dateStr.substring(0, 10); 
+                let weatherIco = `https:///openweathermap.org/img/w/${cityObj.icon}.png`;
+                createForecastCard(trimmedDate, weatherIco, cityObj.temp, cityObj.humidity);
+            }
+        })
+    }   
+}
+
 
 // Event Listeners
