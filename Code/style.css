@@ -1,46 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 
 * {
-    box-sizing: border-box;
-    font-family: 'Arimo', sans-serif;
+  box-sizing: border-box;
+  font-family: "Arimo", sans-serif;
 }
 
 :root {
-    --red: #E63946;
-    --honeydew: #F1FAEE;
-    --babyblue: #A8DADC;
-    --strongblue: #457B9D;
-    --darkblue: #1D3557;
+  --red: #e63946;
+  --honeydew: #f1faee;
+  --babyblue: #a8dadc;
+  --strongblue: #457b9d;
+  --darkblue: #1d3557;
 }
 
 .custom-header {
-    background-color: var(--strongblue);
-    color: honeydew;
+  background-color: var(--strongblue);
+  color: honeydew;
 }
 
 .custom-button {
-    background-color: var(--strongblue);
-    color: honeydew;
-    border: none;
-    border-radius: 45px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+  background-color: var(--strongblue);
+  color: honeydew;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .custom-button:hover {
-    background-color: #2EE59D;
-    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-    color: honeydew;
-    transform: translateY(-7px);;
+  background-color: #2ee59d;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: honeydew;
+  transform: translateY(-7px);
 }
 
 .city-info {
-    border-style: solid;
-    border-radius: 10px;
-    border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 2px;
 }
 
 .city-name {
-    font-weight: bold;
-    font-size: 30px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.card-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-text {
+  padding: 10px 30px 5px 10px;
+}
+
+.five-day-card {
+  margin: 40px;
+  width: 175px;
+  height: auto;
+  border-radius: 5px;
+  color: white;
+  font-size: larger;
+  background-color: #3498db;
 }
