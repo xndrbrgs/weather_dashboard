@@ -6,6 +6,7 @@ var weatherApiKey = "1235ceb3341c3c7db44a7f1a34a49d30";
 
 // DOM Elements
 var cityInput = $("#enter-city");
+var cityNameEl = $('#city-name');
 var searchButton = $("#searchBtn");
 var clearButton = $("#clearBtn");
 var timeDisplayEl = $("#currentDay");
@@ -32,7 +33,7 @@ setInterval(displayTime, 1000);
 if (JSON.parse(localStorage.getItem("history")) === null) {
   console.log("history not found");
 } else {
-  console.log("history loaded into searchHistoryArr");
+  console.log("history loaded into searchHistoryArray");
   renderSearchHistory();
 }
 
@@ -51,6 +52,26 @@ $(document).on("click", ".historyEntry", function() {
   let thisElement = $(this);
   getWeather(thisElement.text());
 })
+
+function renderSearchHistory(cityName) {
+  historyEl.empty();
+  let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory"));
+  for (let i = 0; i < searchHistoryArr.length; i++) {
+      let newListItem = $("<li>").attr("class", "historyEntry");
+      newListItem.text(searchHistoryArray[i]);
+      searchHistoryEl.prepend(newListItem);
+  }
+}
+
+function renderWeatherData(cityName, cityTemp, cityHumidity, cityWindSpeed, cityWeatherIcon, uvVal) {
+  cityNameEl.text(cityName)
+  currentTemp.text(`Temperature: ${cityTemp} °F`);
+  currentHumid.text(`Humidity: ${cityHumidity}%`);
+  currentWind.text(`Wind Speed: ${cityWindSpeed} MPH`);
+  currentUV.text(`UV Index: ${uvVal}`);
+  weatherIconEl.attr("src", cityWeatherIcon);
+}
+
 
 
 // Event Listeners
